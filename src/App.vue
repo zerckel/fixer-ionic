@@ -1,28 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div class="ion-page">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Currency converter</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+            <fixerForm v-on:result="getResult($event)"></fixerForm>
+            <result v-bind:result="result"></result>
+        </ion-content>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import fixerForm from "@/components/form"
+  import result from "@/components/result"
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  export default {
+    name: "home",
+    components: {
+      'fixerForm': fixerForm,
+      'result': result
+    },
+    data() {
+      return {
+        result: [
+                'Resultat',
+                ''
+        ]
+      }
+    }
+    ,
+    methods: {
+      getResult: function (result) {
+        this.result = result
+      }
+    }
   }
-}
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
